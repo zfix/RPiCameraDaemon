@@ -22,12 +22,12 @@ class MyDaemon(Daemon):
         self.params = params
         self.pidfile = params['pidfile']
         self.cmd = params['cmd']
-        self.logfile = params['logfile']
+        # self.logfile = params['logfile']
 
     def startprocs(self):
-        self.logging('proc1 starting')
+        # self.logging('proc1 starting')
         self.proc = Popen(self.cmd.split(), stdout=PIPE, stderr=PIPE)
-        self.logging('daemon started')
+        # self.logging('daemon started')
 
     def stopprocs(self):
         if psutil.pid_exists(self.proc2.pid):
@@ -37,10 +37,10 @@ class MyDaemon(Daemon):
         self.startprocs()
         while True:
             if self.proc.poll():
-                self.logging('proc2 problem')
+                # self.logging('proc2 problem')
                 self.stopprocs()
                 self.startprocs()
-            self.logging('gst is ok')
+            # self.logging('gst is ok')
             time.sleep(2)
 
     def logging(self, msg):
